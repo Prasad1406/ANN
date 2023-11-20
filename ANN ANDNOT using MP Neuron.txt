@@ -1,0 +1,14 @@
+import numpy as np
+
+def mp_neuron(inputs, weights, threshold):
+    return int(np.dot(inputs, weights) >= threshold)
+
+def andnot_nn(inputs):
+    weights = [[-1, 1], [1, -1]]
+    return int(all(mp_neuron(inputs, weights[i], 0) for i in range(len(weights))))
+
+inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+outputs = [andnot_nn(inputs[i].reshape(1, -1)) for i in range(inputs.shape[0])]
+
+print("Inputs:", inputs)
+print("Outputs:", outputs)
